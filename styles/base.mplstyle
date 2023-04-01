@@ -1,0 +1,159 @@
+## 设置 figure, font, 保存格式 等全局基本属性
+## style sheet 教程查看 https://matplotlib.org/stable/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files
+## matplotlib 元素图 https://cloud.tencent.com/developer/article/1609846
+
+## ***************************************************************************
+## * Figure Config 图片基本设置                                                *
+## ***************************************************************************
+
+figure.figsize:  10, 6  # figure size in inches
+
+## ***************************************************************************
+## * Figure Saving 保存图片选项                                                *
+## ***************************************************************************
+
+savefig.transparent: False     # whether figures are saved with a transparent
+                                # background by default
+
+savefig.format: pdf        # {png, ps, pdf, svg}
+savefig.bbox: tight
+
+pdf.fonttype:  3  # Output Type 3 (Type3) or Type 42 (TrueType)
+
+## ***************************************************************************
+## * AXIS                                                                    *
+## ***************************************************************************
+#xaxis.labellocation: center  # alignment of the xaxis label: {left, right, center}
+#yaxis.labellocation: center  # alignment of the yaxis label: {bottom, top, center}
+
+
+## ***************************************************************************
+## * FONT 字体设置                                                             *
+## ***************************************************************************
+## The font properties used by `text.Text`.
+## See https://matplotlib.org/api/font_manager_api.html for more information
+## on font properties.  The 6 font properties used for font matching are
+## given below with their default values.
+##
+## The font.family property can take either a single or multiple entries of any
+## combination of concrete font names (not supported when rendering text with
+## usetex) or the following five generic values:
+##     - 'serif' (e.g., Times),
+##     - 'sans-serif' (e.g., Helvetica),
+##     - 'cursive' (e.g., Zapf-Chancery),
+##     - 'fantasy' (e.g., Western), and
+##     - 'monospace' (e.g., Courier).
+## Each of these values has a corresponding default list of font names
+## (font.serif, etc.); the first available font in the list is used.  Note that
+## for font.serif, font.sans-serif, and font.monospace, the first element of
+## the list (a DejaVu font) will always be used because DejaVu is shipped with
+## Matplotlib and is thus guaranteed to be available; the other entries are
+## left as examples of other possible values.
+##
+## The font.style property has three values: normal (or roman), italic
+## or oblique.  The oblique style will be used for italic, if it is not
+## present.
+##
+## The font.variant property has two values: normal or small-caps.  For
+## TrueType fonts, which are scalable fonts, small-caps is equivalent
+## to using a font size of 'smaller', or about 83%% of the current font
+## size.
+##
+## The font.weight property has effectively 13 values: normal, bold,
+## bolder, lighter, 100, 200, 300, ..., 900.  Normal is the same as
+## 400, and bold is 700.  bolder and lighter are relative values with
+## respect to the current weight.
+##
+## The font.stretch property has 11 values: ultra-condensed,
+## extra-condensed, condensed, semi-condensed, normal, semi-expanded,
+## expanded, extra-expanded, ultra-expanded, wider, and narrower.  This
+## property is not currently implemented.
+##
+## The font.size property is the default font size for text, given in points.
+## 10 pt is the standard value.
+##
+## Note that font.size controls default text sizes.  To configure
+## special text sizes tick labels, axes, labels, title, etc., see the rc
+## settings for axes and ticks.  Special text sizes can be defined
+## relative to font.size, using the following values: xx-small, x-small,
+## small, medium, large, x-large, xx-large, larger, or smaller
+
+## 下面的设置相当于全局的字体大小配置
+font.family : Microsoft YaHei #字体设置为微软雅黑
+font.style:   normal
+font.variant: normal
+font.weight:  normal
+font.stretch: normal
+font.size:    10.0
+
+## ***************************************************************************
+## * TICKS 设置坐标轴的，刻度，label等                                           *
+## ***************************************************************************
+## See https://matplotlib.org/api/axis_api.html#matplotlib.axis.Tick
+#xtick.top:           False   # draw ticks on the top side
+#xtick.bottom:        True    # draw ticks on the bottom side
+#xtick.labeltop:      False   # draw label on the top
+#xtick.labelbottom:   True    # draw label on the bottom
+#xtick.major.size:    3.5     # major tick size in points
+#xtick.minor.size:    2       # minor tick size in points
+#xtick.major.width:   0.8     # major tick width in points
+#xtick.minor.width:   0.6     # minor tick width in points
+#xtick.major.pad:     3.5     # distance to major tick label in points
+#xtick.minor.pad:     3.4     # distance to the minor tick label in points
+#xtick.color:         black   # color of the ticks
+#xtick.labelcolor:    inherit # color of the tick labels or inherit from xtick.color
+#xtick.labelsize:     medium  # font size of the tick labels
+#xtick.direction:     out     # direction: {in, out, inout}
+#xtick.minor.visible: False   # visibility of minor ticks on x-axis
+#xtick.major.top:     True    # draw x axis top major ticks
+#xtick.major.bottom:  True    # draw x axis bottom major ticks
+#xtick.minor.top:     True    # draw x axis top minor ticks
+#xtick.minor.bottom:  True    # draw x axis bottom minor ticks
+#xtick.alignment:     center  # alignment of xticks
+
+#ytick.left:          True    # draw ticks on the left side
+#ytick.right:         False   # draw ticks on the right side
+#ytick.labelleft:     True    # draw tick labels on the left side
+#ytick.labelright:    False   # draw tick labels on the right side
+#ytick.major.size:    3.5     # major tick size in points
+#ytick.minor.size:    2       # minor tick size in points
+#ytick.major.width:   0.8     # major tick width in points
+#ytick.minor.width:   0.6     # minor tick width in points
+#ytick.major.pad:     3.5     # distance to major tick label in points
+#ytick.minor.pad:     3.4     # distance to the minor tick label in points
+#ytick.color:         black   # color of the ticks
+#ytick.labelcolor:    inherit # color of the tick labels or inherit from ytick.color
+#ytick.labelsize:     medium  # font size of the tick labels
+#ytick.direction:     out     # direction: {in, out, inout}
+#ytick.minor.visible: False   # visibility of minor ticks on y-axis
+#ytick.major.left:    True    # draw y axis left major ticks
+#ytick.major.right:   True    # draw y axis right major ticks
+#ytick.minor.left:    True    # draw y axis left minor ticks
+#ytick.minor.right:   True    # draw y axis right minor ticks
+#ytick.alignment:     center_baseline  # alignment of yticks
+
+xtick.bottom:        True    # 在下方展示x轴刻度
+xtick.labelbottom:   True    # 在下方画x轴标签
+xtick.major.size:    3.5     # major tick size in points
+xtick.major.width:   0.8     # major tick width in points
+xtick.major.pad:     3.5     # distance to major tick label in points
+xtick.color:   black   # color of the ticks
+#xtick.labelcolor:  black
+xtick.labelsize:   medium
+xtick.direction:   in    # direction: {in, out, inout}
+xtick.minor.visible: False   # visibility of minor ticks on x-axis
+xtick.major.bottom:  True    # draw x axis bottom major ticks
+xtick.alignment:     center  # alignment of xticks
+
+ytick.left:          True    # draw ticks on the left side
+ytick.labelleft:     True    # draw tick labels on the left side
+ytick.major.size:    3.5     # major tick size in points
+ytick.major.width:   0.8     # major tick width in points
+ytick.major.pad:     3.5     # distance to major tick label in points
+ytick.color:         black   # color of the ticks
+#ytick.labelcolor:    black # color of the tick labels or inherit from ytick.color
+ytick.labelsize:     medium  # font size of the tick labels
+ytick.direction:     in     # direction: {in, out, inout}
+ytick.minor.visible: False   # visibility of minor ticks on y-axis
+ytick.alignment:     center_baseline  # alignment of yticks
+
