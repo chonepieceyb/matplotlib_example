@@ -22,6 +22,10 @@ def get_default_bar_style_sheets():
 def get_default_line_style_sheets():
     return [DEFAULT_BASE_STYLE, DEFAULT_LINE_STYLE]
 
+def get_style_sheet_upon_base(style):
+    return [DEFAULT_BASE_STYLE, os.path.join(STYLE_SHEET_DIR, style)]
+
+
 def cal_bar_offset(index, num, width, align_mode = "center"): 
     '''
         calculate offset to x of groub bars
