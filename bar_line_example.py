@@ -123,11 +123,11 @@ def draw():
         fig, ax = plt.subplots()
         
         set_hatch(**bar_config1["hatch_config"])
-        bar1 = ax.bar(x + cal_bar_offset(0, 3, width), y_1, width, **bar_config1["matplot_config"])
+        bar1 = ax.bar(x + cal_bar_offset(0, 3, width, interval=0.05), y_1, width, **bar_config1["matplot_config"])
         set_hatch(**bar_config2["hatch_config"])
-        bar2 = ax.bar(x + cal_bar_offset(1, 3, width), y_2, width, **bar_config2["matplot_config"])
+        bar2 = ax.bar(x + cal_bar_offset(1, 3, width, interval=0.05), y_2, width, **bar_config2["matplot_config"])
         set_hatch(**bar_config3["hatch_config"])
-        bar3 = ax.bar(x + cal_bar_offset(2, 3, width), y_3, width, **bar_config3["matplot_config"])
+        bar3 = ax.bar(x + cal_bar_offset(2, 3, width, interval=0.05), y_3, width, **bar_config3["matplot_config"])
         
         # Add some text for labels, title and custom x-axis tick labels, etc.
         #ax.set_ylim(1, 1e12)
@@ -138,8 +138,6 @@ def draw():
         ax.set_xticklabels(labels)
     
         
-
-
         ax2 = ax.twinx()
         line1 = ax2.plot(x + cal_bar_offset(1, 3, width), l_1, **line_config1["matplot_config"])
         line2 = ax2.plot(x + cal_bar_offset(2, 3, width), l_2, **line_config2["matplot_config"])
@@ -164,6 +162,7 @@ def draw():
         fig.tight_layout()
 
         save_figure('bar_line_example')
+        plt.show()
     
 if __name__ == '__main__': 
     draw()
