@@ -8,12 +8,13 @@ import numpy as np
 
 styles = get_style_sheet_upon_base("picture_type_2.mplstyle")
 
-labels = ['Switch', 'Router', 'Katran', 'BPF-iptables', 'addtion1', 'addtion2', 'addtion3', 'addtion4', 'addtion5', 'addtion6']
-base_line1 = np.array([3, 4, 2, 3, 3, 4, 2, 5, 2, 5])
+labels = ['CFFS', 'VBF', 'Blocked Cuckoo', 'Space Saving', 'Count Min', 'UnivMon', 'Nitro Sketch', 'RHSSCTW', 'CTW',  'NCTW']
+y = np.array([0, 20, 40, 60, 80, 100, 120]) 
+base_line1 = np.array([60, 70, 80, 75, 60, 60, 70, 80, 75, 60])
 # base_line2 = np.array([3, 4, 2, 3])
 # base_line3 = np.array([3, 4, 2, 3])
 # base_line4 = np.array([3, 4, 2, 3])
-y_1 = np.array([4, 4.5, 3, 3.5, 5, 2, 4, 1, 5, 4])
+y_1 = np.array([100, 100, 100, 100, 100, 100, 100, 100, 100, 100])
 # y_2 = np.array([4, 4.5, 3, 3.5])
 # y_3 = np.array([4, 4.5, 3, 3.5])
 # y_4 = np.array([4, 4.5, 3, 3.5])
@@ -29,7 +30,7 @@ linecolor = ["#DC625B", "#51B72D", "#DFDFDF"]
 
 fig_config = {
     'xlabel' : '#CPU',   #x轴标签名
-    'ylabel' : 'Avg Throughput (Mpps)' , #y轴标签名
+    'ylabel' : ' Proportion(%)' , #y轴标签名
     'bar_width' : 0.035, #每一根柱子的宽度
     'text_size' : 19,
     'bar_line_width' : 1,
@@ -37,14 +38,14 @@ fig_config = {
         "wspace" : 0
     },
     "xtick_label_conf": {
-         "rotation" : 0,
+         "rotation" : 30,
          "ha" : "center",
     },
     "bar_interval" : 0.04,
     "bar_edge": 0.038,
     "legned_conf" : {
         "loc" : "upper left",
-        "bbox_to_anchor" : (0.06, 0.93),
+        "bbox_to_anchor" : (0.08, 0.93),
         "ncols" : 2,
     },
     "hatch_line_width" : 1
@@ -152,7 +153,7 @@ def draw():
         
         ax1.set_xlim(0, right_edge + fig_config["bar_edge"])
         ax1.set_xticks(x_label_tick, labels, **fig_config["xtick_label_conf"])
-        ax1.set_title("High Locality")
+        ax1.set_title("sec5-1-type2-bottleneck")
         
         # ax2.set_xlim(0, right_edge + fig_config["bar_edge"])
         # ax2.set_xticks(x_label_tick, labels, **fig_config["xtick_label_conf"])
@@ -175,7 +176,9 @@ def draw():
 
         ax1.yaxis.set_major_locator(ticker.MultipleLocator(1))
         ax1.set_ylabel(fig_config['ylabel'])
-        ax1.set_ylim(0, 6)
+        plt.yticks(y)
+        plt.ylim(min(y), max(y) - 1)
+        # ax1.set_ylim(0, 100)
          
         fig.tight_layout() 
         save_figure('picture_type_2')

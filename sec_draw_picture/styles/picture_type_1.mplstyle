@@ -136,6 +136,6 @@ grid.linewidth: 1.2        # in points
 grid.alpha:     1.0        # transparency, between 0.0 and 1.0
 
 
-xtick.labelsize: 20
+xtick.labelsize: 17
 ytick.labelsize: 20
 
