@@ -6,47 +6,48 @@ import numpy as np
 
 ## data end 
 
-styles = get_style_sheet_upon_base("picture_type_1.mplstyle")
+styles = get_style_sheet_upon_base("picture_type_3-fw.mplstyle")
 
-labels = ['bridge', 'katran', 'rate limiter', 'Univmon', 'Queue application']
-y = np.array([0, 20, 40, 60, 80, 100, 120]) 
-base_line1 = np.array([60, 70, 80, 75, 60])
-# base_line2 = np.array([3, 4, 2, 3])
+labels = ['4', '8', '16', '32']
+base_line1_ebpf = np.array([3, 4, 2, 3])
+base_line2 = np.array([3, 4, 2, 3])
 # base_line3 = np.array([3, 4, 2, 3])
 # base_line4 = np.array([3, 4, 2, 3])
-y_1 = np.array([100, 100, 100, 100, 100])
-# y_2 = np.array([4, 4.5, 3, 3.5])
+y_1 = np.array([4, 4.5, 3, 3.5])
+y_2 = np.array([4, 4.5, 3, 3.5])
 # y_3 = np.array([4, 4.5, 3, 3.5])
 # y_4 = np.array([4, 4.5, 3, 3.5])
-
+base_line1_LKM = np.array([2, 4, 1, 4])
+base_line1_Hypercom = np.array([2, 1.5, 2, 3.5])
 #all_num = [y_1[i] + y_2[i] + y_3[i] for i in range(labels)]
 
 # target_datas = [y_1, y_2, y_3]
-target_datas = [y_1]
+target_datas = [y_1, y_2]
 #barcolor = ["bisque","honeydew","lightskyblue","mistyrose"]
 hatch_style = ['x', '\\', '/']
 
 linecolor = ["#DC625B", "#51B72D", "#DFDFDF"]
 
 fig_config = {
-    'xlabel' : '#CPU',   #x轴标签名
-    'ylabel' : 'Proportion (%)' , #y轴标签名
-    'bar_width' : 0.035, #每一根柱子的宽度
+    'xlabel_1' : 'number of set sets',   #x轴标签名
+    'xlabel_2' : 'number of buckets',
+    'ylabel' : 'Avg Throughput (Mpps)' , #y轴标签名
+    'bar_width' : 0.020, #每一根柱子的宽度
     'text_size' : 19,
     'bar_line_width' : 1,
     'gridspec_kw' : {
-        "wspace" : 0
+        "wspace" : 0.08
     },
     "xtick_label_conf": {
          "rotation" : 0,
          "ha" : "center",
     },
-    "bar_interval" : 0.04,
+    "bar_interval" : 0.06,
     "bar_edge": 0.038,
     "legned_conf" : {
         "loc" : "upper left",
-        "bbox_to_anchor" : (0.08, 0.93),
-        "ncols" : 2,
+        "bbox_to_anchor" : (0.13, 0.89),
+        "ncols" : 3,
     },
     "hatch_line_width" : 1
 }
@@ -56,7 +57,7 @@ bar_config0 = {
         'color' : "white", 
         'edgecolor' : linecolor[2],  #edgecolor will override hatch color 
         'linewidth' : fig_config['bar_line_width'], 
-        'label' : 'Baseline',   #如果为一个数是全局的，否则每一个条上都标注
+        'label' : 'LKM',   #如果为一个数是全局的，否则每一个条上都标注
         #tick_label : str or list of str, optional 设置是否在条上标注
         #xerr, yerrfloat or array-like of shape(N,) or shape(2, N), optional
         #ecolorc olor or list of color, default: 'black'
@@ -73,7 +74,7 @@ bar_config1 = {
         'color' : "white", 
         'edgecolor' : linecolor[0],
         'linewidth' : fig_config['bar_line_width'],
-        'label' : 'Morpheus',   #如果为一个数是全局的，否则每一个条上都标注
+        'label' : 'ebpf',   #如果为一个数是全局的，否则每一个条上都标注
         #tick_label : str or list of str, optional 设置是否在条上标注
         #xerr, yerrfloat or array-like of shape(N,) or shape(2, N), optional
         #ecolorc olor or list of color, default: 'black'
@@ -85,23 +86,23 @@ bar_config1 = {
     }
 }
 
-# bar_config2 = {
-#     "matplot_config" : {
-#         #'color' : '#74A9D0', 
-#         'color' : "white", 
-#         'edgecolor' : linecolor[1],
-#         'linewidth' : fig_config['bar_line_width'],
-#         'label' : 'ESwitch',   #如果为一个数是全局的，否则每一个条上都标注
-#         #tick_label : str or list of str, optional 设置是否在条上标注
-#         #xerr, yerrfloat or array-like of shape(N,) or shape(2, N), optional
-#         #ecolorc olor or list of color, default: 'black'
-#         'hatch' : '/////'
-#     },
-#     "hatch_config" : {
-#         'color' : linecolor[1],
-#         'linewidth' : fig_config["hatch_line_width"]
-#     }
-# }
+bar_config2 = {
+    "matplot_config" : {
+        #'color' : '#74A9D0', 
+        'color' : "white", 
+        'edgecolor' : linecolor[1],
+        'linewidth' : fig_config['bar_line_width'],
+        'label' : 'Hypercom',   #如果为一个数是全局的，否则每一个条上都标注
+        #tick_label : str or list of str, optional 设置是否在条上标注
+        #xerr, yerrfloat or array-like of shape(N,) or shape(2, N), optional
+        #ecolorc olor or list of color, default: 'black'
+        'hatch' : '/////'
+    },
+    "hatch_config" : {
+        'color' : linecolor[1],
+        'linewidth' : fig_config["hatch_line_width"]
+    }
+}
 
 def draw(): 
     with plt.style.context(styles): 
@@ -110,15 +111,35 @@ def draw():
             len(labels), width , interval=fig_config["bar_interval"])
         x = np.array(x_tick)
         # fig, (ax1, ax2, ax3, ax4) = plt.subplots(1, 4, sharey=True, gridspec_kw = fig_config['gridspec_kw'])
-        fig, ax1 = plt.subplots(1, 1, sharey=True, gridspec_kw = fig_config['gridspec_kw'])
+        fig, (ax1, ax2) = plt.subplots(1, 2, sharey=False, gridspec_kw = fig_config['gridspec_kw'])
         set_hatch(**bar_config0["hatch_config"])
-        __barcontainer = ax1.bar(x, base_line1, width, **bar_config0["matplot_config"])
+        __barcontainer = ax1.bar(x-width, base_line1_LKM, width, **bar_config0["matplot_config"])
         set_bar_edgecolor_to_black(__barcontainer)
-       
-        increment = y_1 - base_line1
-        set_hatch(**bar_config1["hatch_config"])
-        __barcontainer = ax1.bar(x, increment, width, **bar_config1["matplot_config"], bottom = base_line1)
+
+        set_hatch(**bar_config0["hatch_config"])
+        __barcontainer = ax1.bar(x, base_line1_ebpf, width, **bar_config1["matplot_config"])
         set_bar_edgecolor_to_black(__barcontainer)
+        
+        set_hatch(**bar_config0["hatch_config"])
+        __barcontainer = ax1.bar(x+width, base_line1_Hypercom, width, **bar_config2["matplot_config"])
+        set_bar_edgecolor_to_black(__barcontainer)
+
+
+        set_hatch(**bar_config0["hatch_config"])
+        __barcontainer = ax2.bar(x-width, base_line1_LKM, width, **bar_config0["matplot_config"])
+        set_bar_edgecolor_to_black(__barcontainer)
+
+        set_hatch(**bar_config0["hatch_config"])
+        __barcontainer = ax2.bar(x, base_line1_ebpf, width, **bar_config1["matplot_config"])
+        set_bar_edgecolor_to_black(__barcontainer)
+        
+        set_hatch(**bar_config0["hatch_config"])
+        __barcontainer = ax2.bar(x+width, base_line1_Hypercom, width, **bar_config2["matplot_config"])
+        set_bar_edgecolor_to_black(__barcontainer)
+        # increment = y_1 - base_line1_ebpf
+        # set_hatch(**bar_config1["hatch_config"])
+        # __barcontainer = ax1.bar(x, increment, width, **bar_config1["matplot_config"], bottom = base_line1_ebpf)
+        # set_bar_edgecolor_to_black(__barcontainer)
         
         # set_hatch(**bar_config0["hatch_config"])
         # __barcontainer = ax2.bar(x, base_line2, width, **bar_config0["matplot_config"])
@@ -153,8 +174,13 @@ def draw():
         
         ax1.set_xlim(0, right_edge + fig_config["bar_edge"])
         ax1.set_xticks(x_label_tick, labels, **fig_config["xtick_label_conf"])
-        ax1.set_title("sec2-type1-netapp")
-        
+        ax1.set_title("Vector of Bloom Filter")
+        ax1.set_xlabel(fig_config['xlabel_1'])
+                       
+        ax2.set_xlim(0, right_edge + fig_config["bar_edge"])
+        ax2.set_xticks(x_label_tick, labels, **fig_config["xtick_label_conf"])
+        ax2.set_title("Blocked Cuckoo Hashing")
+        ax2.set_xlabel(fig_config['xlabel_2'])
         # ax2.set_xlim(0, right_edge + fig_config["bar_edge"])
         # ax2.set_xticks(x_label_tick, labels, **fig_config["xtick_label_conf"])
         # ax2.set_title("Low Locality")
@@ -176,12 +202,14 @@ def draw():
 
         ax1.yaxis.set_major_locator(ticker.MultipleLocator(1))
         ax1.set_ylabel(fig_config['ylabel'])
-        plt.yticks(y)
-        plt.ylim(min(y), max(y) - 1)
-        # ax1.set_ylim(0, 120)
+        ax1.set_ylim(0, 6)
          
+        ax2.yaxis.set_major_locator(ticker.MultipleLocator(1))
+        # ax2.set_ylabel(fig_config['ylabel'])
+        ax2.set_ylim(0, 8)
+
         fig.tight_layout() 
-        save_figure('picture_type_1')
+        save_figure('picture_type_3-fw')
         plt.show()
     
 if __name__ == '__main__': 

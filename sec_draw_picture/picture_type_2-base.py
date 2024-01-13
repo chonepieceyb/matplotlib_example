@@ -6,15 +6,15 @@ import numpy as np
 
 ## data end 
 
-styles = get_style_sheet_upon_base("picture_type_2.mplstyle")
+styles = get_style_sheet_upon_base("picture_type_2-base.mplstyle")
 
-labels = ['CFFS', 'VBF', 'Blocked Cuckoo', 'Space Saving', 'Count Min', 'UnivMon', 'Nitro Sketch', 'RHSSCTW', 'CTW',  'NCTW']
+labels = ['FFS(eBPF)', 'FFS (INS)', 'Comp(eBPF)', 'Comp(NS)', 'Comp(ALG)', 'HASH(eBPF)', 'HASH(ALG)', 'HASH(BLK)', 'BKTLIST(eBPF)', 'BKTLIST(BASE)', 'RANDOM(eBPF)', 'RANDOM(BASE)']
 y = np.array([0, 20, 40, 60, 80, 100, 120]) 
-base_line1 = np.array([60, 70, 80, 75, 60, 60, 70, 80, 75, 60])
+base_line1 = np.array([60, 70, 80, 75, 60, 60, 70, 80, 75, 60, 70, 85])
 # base_line2 = np.array([3, 4, 2, 3])
 # base_line3 = np.array([3, 4, 2, 3])
 # base_line4 = np.array([3, 4, 2, 3])
-y_1 = np.array([100, 100, 100, 100, 100, 100, 100, 100, 100, 100])
+y_1 = np.array([100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100])
 # y_2 = np.array([4, 4.5, 3, 3.5])
 # y_3 = np.array([4, 4.5, 3, 3.5])
 # y_4 = np.array([4, 4.5, 3, 3.5])
@@ -30,7 +30,7 @@ linecolor = ["#DC625B", "#51B72D", "#DFDFDF"]
 
 fig_config = {
     'xlabel' : '#CPU',   #x轴标签名
-    'ylabel' : ' Proportion(%)' , #y轴标签名
+    'ylabel' : ' Average Throughput(Mpps)' , #y轴标签名
     'bar_width' : 0.035, #每一根柱子的宽度
     'text_size' : 19,
     'bar_line_width' : 1,
@@ -153,7 +153,7 @@ def draw():
         
         ax1.set_xlim(0, right_edge + fig_config["bar_edge"])
         ax1.set_xticks(x_label_tick, labels, **fig_config["xtick_label_conf"])
-        ax1.set_title("sec5-1-type2-bottleneck")
+        ax1.set_title("sec5-1-type2-base")
         
         # ax2.set_xlim(0, right_edge + fig_config["bar_edge"])
         # ax2.set_xticks(x_label_tick, labels, **fig_config["xtick_label_conf"])
@@ -181,7 +181,7 @@ def draw():
         # ax1.set_ylim(0, 100)
          
         fig.tight_layout() 
-        save_figure('picture_type_2')
+        save_figure('picture_type_2-base')
         plt.show()
     
 if __name__ == '__main__': 

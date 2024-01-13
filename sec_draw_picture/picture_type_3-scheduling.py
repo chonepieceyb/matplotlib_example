@@ -6,9 +6,10 @@ import numpy as np
 
 ## data end 
 
-styles = get_style_sheet_upon_base("picture_type_3.mplstyle")
+styles = get_style_sheet_upon_base("picture_type_3-scheduling.mplstyle")
 
-labels = ['Switch', 'Router', 'Katran', 'BPF-iptables']
+labels_cffs = ['1', '2', '3', '4']
+labels_ctw = ['1', '2', '3', '4']
 base_line1_ebpf = np.array([3, 4, 2, 3])
 base_line2 = np.array([3, 4, 2, 3])
 # base_line3 = np.array([3, 4, 2, 3])
@@ -29,7 +30,8 @@ hatch_style = ['x', '\\', '/']
 linecolor = ["#DC625B", "#51B72D", "#DFDFDF"]
 
 fig_config = {
-    'xlabel' : '#CPU',   #x轴标签名
+    'xlabel_1' : 'level of bitmap',   #x轴标签名
+    'xlabel_2' : 'level of time wheel',
     'ylabel' : 'Avg Throughput (Mpps)' , #y轴标签名
     'bar_width' : 0.020, #每一根柱子的宽度
     'text_size' : 19,
@@ -107,7 +109,7 @@ def draw():
     with plt.style.context(styles): 
         width = fig_config['bar_width']
         x_tick, _, right_edge = cal_bar_xticks(fig_config["bar_edge"] + width/2, 
-            len(labels), width , interval=fig_config["bar_interval"])
+            len(labels_cffs), width , interval=fig_config["bar_interval"])
         x = np.array(x_tick)
         # fig, (ax1, ax2, ax3, ax4) = plt.subplots(1, 4, sharey=True, gridspec_kw = fig_config['gridspec_kw'])
         fig, (ax1, ax2) = plt.subplots(1, 2, sharey=False, gridspec_kw = fig_config['gridspec_kw'])
@@ -172,12 +174,14 @@ def draw():
         x_label_tick = x 
         
         ax1.set_xlim(0, right_edge + fig_config["bar_edge"])
-        ax1.set_xticks(x_label_tick, labels, **fig_config["xtick_label_conf"])
-        ax1.set_title("First sturcture")
-        
+        ax1.set_xticks(x_label_tick, labels_cffs, **fig_config["xtick_label_conf"])
+        ax1.set_title("Vector of Bloom Filter")
+        ax1.set_xlabel(fig_config['xlabel_1'])
+                       
         ax2.set_xlim(0, right_edge + fig_config["bar_edge"])
-        ax2.set_xticks(x_label_tick, labels, **fig_config["xtick_label_conf"])
-        ax2.set_title("Second sturcture")
+        ax2.set_xticks(x_label_tick, labels_ctw, **fig_config["xtick_label_conf"])
+        ax2.set_title("Blocked Cuckoo Hashing")
+        ax2.set_xlabel(fig_config['xlabel_2'])
         # ax2.set_xlim(0, right_edge + fig_config["bar_edge"])
         # ax2.set_xticks(x_label_tick, labels, **fig_config["xtick_label_conf"])
         # ax2.set_title("Low Locality")
@@ -206,7 +210,7 @@ def draw():
         ax2.set_ylim(0, 8)
 
         fig.tight_layout() 
-        save_figure('picture_type_3')
+        save_figure('picture_type_3-scheduling')
         plt.show()
     
 if __name__ == '__main__': 

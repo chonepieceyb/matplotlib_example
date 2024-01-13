@@ -6,9 +6,9 @@ import numpy as np
 
 ## data end 
 
-styles = get_style_sheet_upon_base("picture_type_4.mplstyle")
+styles = get_style_sheet_upon_base("picture_type_4-measure-nitro.mplstyle")
 
-labels = ['1', '2', '3', '4']
+labels = ['0', '0.2', '0.8', '1.0']
 base_line1_ebpf = np.array([3, 4, 2, 3])
 base_line2 = np.array([3, 4, 2, 3])
 # base_line3 = np.array([3, 4, 2, 3])
@@ -29,7 +29,7 @@ hatch_style = ['x', '\\', '/']
 linecolor = ["#DC625B", "#51B72D", "#DFDFDF"]
 
 fig_config = {
-    'xlabel' : '#CPU',   #x轴标签名
+    'xlabel' : 'update possibility',   #x轴标签名
     'ylabel' : 'Avg Throughput (Mpps)' , #y轴标签名
     'bar_width' : 0.020, #每一根柱子的宽度
     'text_size' : 19,
@@ -222,11 +222,13 @@ def draw():
         
         ax1.set_xlim(x[0], x[len(x)-1])
         ax1.set_xticks(x_label_tick, labels, **fig_config["xtick_label_conf"])
-        ax1.set_title("First sturcture")
+        ax1.set_title("Vector of Bloom Filter")
+        ax1.set_xlabel(fig_config['xlabel'])
 
         ax2.set_xlim(x[0], x[len(x)-1])
         ax2.set_xticks(x_label_tick, labels, **fig_config["xtick_label_conf"])
-        ax2.set_title("Second sturcture")
+        ax2.set_title("Blocked Cuckoo Hashing")
+        ax2.set_xlabel(fig_config['xlabel'])
         # ax2.set_xlim(0, right_edge + fig_config["bar_edge"])
         # ax2.set_xticks(x_label_tick, labels, **fig_config["xtick_label_conf"])
         # ax2.set_title("Second sturcture")
@@ -263,7 +265,7 @@ def draw():
         ax2.set_ylim(1, 5)
 
         fig.tight_layout() 
-        save_figure('picture_type_4')
+        save_figure('picture_type_4-measure-nitro')
         plt.show()
     
 if __name__ == '__main__': 
